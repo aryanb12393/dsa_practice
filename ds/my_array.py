@@ -1,12 +1,3 @@
-# DS: singly LL, doubly LL, stack, queue, deque, binary tree, BST, hash map, heap, graph, disjoint set
-
-# algos: matrix dfs/bfs, dijkstra, prims, kruskals, topsort, binary search, backtracking, two pointers
-
-# TODO (future): segment tree, trie, lru cache
-
-
-# done: dynamic array
-
 class Array:
     
     def __init__(self):
@@ -50,6 +41,46 @@ class Array:
     def get(self, index):
         return self.array[index]
     
+    def insert(self, index, val):
+
+        if self.array_size == self.array_capacity:
+            self.resize()
+
+        for i in range(self.array_size, index, -1):
+            self.array[i] = self.array[i-1]
+        
+        self.array[index] = val
+        self.array_size += 1
+    
+    def delete(self, index):
+        
+        for i in range(index, self.array_size-1):
+            self.array[i] = self.array[i+1]
+        
+        self.array[self.array_size-1] = None
+        self.array_size -= 1
+    
+    def find(self, val):
+
+        for index, elt in enumerate(self.array):
+            if elt == val:
+                return index
+
+        return -1
+    
+    def contains(self, val):
+
+        for elt in self.array:
+            if elt == val:
+                return True
+
+        return False
+    
+    def clear(self):
+
+        for i in range(self.array_size):
+            self.array[i] = None
+        
 
 # tests
 
