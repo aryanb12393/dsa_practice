@@ -53,7 +53,7 @@ class Array:
         self.array_size += 1
     
     def delete(self, index):
-        
+
         for i in range(index, self.array_size-1):
             self.array[i] = self.array[i+1]
         
@@ -81,7 +81,6 @@ class Array:
         for i in range(self.array_size):
             self.array[i] = None
         
-
 # tests
 
 arr = Array()
