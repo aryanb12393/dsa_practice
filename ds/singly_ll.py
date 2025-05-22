@@ -39,7 +39,6 @@ class SinglyLinkedList:
             self.head = new_node
             return
     
-
         new_node.next = self.head
         self.head = new_node
 
@@ -138,7 +137,7 @@ class SinglyLinkedList:
         
         curr = self.head
 
-        while curr.next:
+        while curr:
             
             if curr.data == val:
                 return True
@@ -173,7 +172,7 @@ def test_singly_linked_list():
     ll.append(20)
     ll.append(30)
     assert str(ll) == "10 -> 20 -> 30"
-
+    
     # Prepend test
     ll.prepend(5)
     assert str(ll) == "5 -> 10 -> 20 -> 30"
