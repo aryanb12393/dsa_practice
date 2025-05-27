@@ -40,6 +40,7 @@ class DoublyLinkedList:
 
         if not self.head:
             self.head = new_node
+            self.tail = new_node
             return
         
         self.head.prev = new_node
@@ -57,20 +58,18 @@ class DoublyLinkedList:
         curr_idx = 0
         curr = self.head
 
-        while curr:
+        while curr and curr_idx < idx:
             # print(curr.data)
             curr = curr.next
             curr_idx += 1
-            if idx == curr_idx:
-                print("yello")
-                break
+           
         
         # it was bigger, this is invalid
-        if idx > curr_idx:
+        if curr is None and curr_idx == idx:
+            self.append(val)
             return
 
-        if idx == curr_idx:
-            self.append(val)
+        if curr is None:
             return
 
         # previous node's next = the new node
@@ -88,29 +87,37 @@ class DoublyLinkedList:
         curr.prev = new_node
     
     def delete(self, idx):
+
+        if not self.head:
+            return
         
         if idx == 0:
             self.head = self.head.next
-            self.head.prev = None
+            if self.head:
+                self.head.prev = None
             return
         
         curr = self.head
         curr_idx = 0
 
-        while curr:
-
-            if idx == curr_idx:
-                break
+        while curr and curr_idx < idx:
 
             curr = curr.next
             curr_idx += 1
 
         
-        if idx > curr_idx:
+        if curr is None:
             return
         
-        if idx == curr_idx:
-            self.tail 
+        if curr.next:
+            curr.next.prev = curr.prev
+            
+        else:
+            self.tail = curr.prev  # deleting tail
+
+        if curr.prev:
+            curr.prev.next = curr.next
+        
 
         
 
